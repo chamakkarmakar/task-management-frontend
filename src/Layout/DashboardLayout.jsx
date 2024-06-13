@@ -14,7 +14,7 @@ const DashboardLayout = () => {
           <RiMenu2Fill className=' w-7 h-7 ' />
         </label>
         
-        <div className='md:w-[90%] w-full mx-auto '>
+        <div className=' w-full mx-auto '>
           {/* Profile  */}
         <div className='flex items-center justify-end'>
           <h3 className='text-black font-medium'>{user?.displayName}</h3>
@@ -23,7 +23,7 @@ const DashboardLayout = () => {
           <Outlet />
         </div>
       </div>
-      <div className="drawer-side md:my-10 md:mx-10 md:rounded-xl">
+      <div className="drawer-side md:my-10 md:mx-5 md:rounded-xl">
         <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
         <ul className=' flex flex-col md:w-80 w-60 items-center bg-cyan-600 text-center md:pt-32 pt-20 h-full'>
           <li className='text-white mb-5 md:text-lg text-md '>
