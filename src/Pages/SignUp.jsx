@@ -1,21 +1,33 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import SignWithGoogle from '../Components/Google/SignWithGoogle';
+import { AuthContext } from '../Components/AuthProvider/AuthProvider';
 
 const SignUp = () => {
-
+    const { createUser, user } = useContext(AuthContext);
     const handleSignUp = event => {
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
         console.log(email, password);
+
+        createUser(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user);
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
+        event.target.reset();
     }
 
     return (
-        <div className="flex h-screen items-center justify-center bg-cyan-500/20 p-6 md:p-0">
-        <div className="flex justify-center items-center h-full w-full overflow-hidden rounded-xl shadow-md  md:h-[90%] md:w-[80%] lg:h-[80%]">
-            <div className="flex w-full flex-col justify-center bg-white py-10 lg:w-[60%]">
+        <div className="flex h-screen items-center justify-center bg-cyan-500/20 p-4 md:p-0">
+        <div className="flex justify-center items-center h-auto w-full overflow-hidden rounded-xl shadow-md  md:h-[80%] md:w-[50%]">
+            <div className="flex w-full flex-col justify-center bg-white py-10">
                 <h2 className="pb-8 text-center text-3xl font-bold text-cyan-500">Sign Up Here</h2>
                 <form onSubmit={handleSignUp} className="flex  w-full flex-col items-center justify-center gap-4">
                     <input className="w-[80%] rounded-lg border border-cyan-500 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 md:w-[60%]" type="text" placeholder="Username" name="name" />
