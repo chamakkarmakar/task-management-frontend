@@ -35,20 +35,20 @@ const AuthProvider = ({ children }) => {
       return signInWithPopup(auth, googleProvider);
     };
   
-    // useEffect(() => {
-    //   const unscubcribe = onAuthStateChanged(auth, (currentUser) => {
-    //     if (currentUser) {
-    //       setUser(currentUser);
-    //       setLoading(false);
-    //       console.log(currentUser);
-    //     } else {
-    //       setLoading(false);
-    //     }
-    //   });
-    //   return () => {
-    //     return unscubcribe();
-    //   };
-    // }, []);
+    useEffect(() => {
+      const unscubcribe = onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser) {
+          setUser(currentUser);
+          setLoading(false);
+          console.log(currentUser);
+        } else {
+          setLoading(false);
+        }
+      });
+      return () => {
+        return unscubcribe();
+      };
+    }, []);
   
     const authInfo = { user, signWithGoogle, createUser, signIn, logOut, loading };
     return (

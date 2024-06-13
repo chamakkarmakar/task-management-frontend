@@ -1,10 +1,15 @@
 import React, { useContext } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SignWithGoogle from '../Components/Google/SignWithGoogle';
 import { AuthContext } from '../Components/AuthProvider/AuthProvider';
 
 const SignUp = () => {
     const { createUser, user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location?.state?.from?.pathname || "/";
+
     const handleSignUp = event => {
         event.preventDefault();
         const name = event.target.name.value;
