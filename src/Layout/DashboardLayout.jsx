@@ -44,9 +44,9 @@ const DashboardLayout = () => {
           </li>
 
           <li className='text-white mb-5 md:text-lg text-md '>
-            <NavLink to="all-reviews" className={({ isActive, isPending }) =>
+            <NavLink to="task-list" className={({ isActive, isPending }) =>
               isPending ? "pending" : isActive ? "bg-cyan-800 w-auto md:px-20 px-10 py-2" : ""
-            }>All Tasks</NavLink>
+            }>Task List</NavLink>
           </li>
           <li className='text-white mb-5 md:text-lg text-md '>
             <NavLink to="add" className={({ isActive, isPending }) =>

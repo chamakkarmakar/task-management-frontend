@@ -6,6 +6,7 @@ import SignUp from "../Pages/SignUp";
 import PrivateRouter from "./PrivateRouter";
 import Dashboard from "../Pages/Dashboard";
 import DashboardLayout from "../Layout/DashboardLayout";
+import TaskList from "../Pages/TaskList";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +36,14 @@ export const router = createBrowserRouter([
                 element: (
                     <PrivateRouter>
                         <Dashboard />
+                    </PrivateRouter>
+                ),
+            },
+            {
+                path: "task-list",
+                element: (
+                    <PrivateRouter>
+                        <TaskList />
                     </PrivateRouter>
                 ),
             },
