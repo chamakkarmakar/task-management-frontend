@@ -9,6 +9,7 @@ const SignIn = () => {
     const location = useLocation();
 
     const from = location?.state?.from?.pathname || "/";
+    
     const handleSignIn = (event) => {
         event.preventDefault();
         const email = event.target.email.value;
