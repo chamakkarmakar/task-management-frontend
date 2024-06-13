@@ -18,7 +18,15 @@ const NavBar = () => {
         {
             menu: 'contact',
             url: '/contact'
-        }
+        },
+        {
+            menu: 'signin',
+            url: '/login'
+        },
+        {
+            menu: 'signup',
+            url: '/register'
+        },
 
     ]
     return (
