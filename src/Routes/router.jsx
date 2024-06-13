@@ -7,6 +7,7 @@ import PrivateRouter from "./PrivateRouter";
 import Dashboard from "../Pages/Dashboard";
 import DashboardLayout from "../Layout/DashboardLayout";
 import TaskList from "../Pages/TaskList";
+import AddTask from "../Pages/AddTask";
 
 export const router = createBrowserRouter([
     {
@@ -44,6 +45,14 @@ export const router = createBrowserRouter([
                 element: (
                     <PrivateRouter>
                         <TaskList />
+                    </PrivateRouter>
+                ),
+            },
+            {
+                path: "add-task",
+                element: (
+                    <PrivateRouter>
+                        <AddTask />
                     </PrivateRouter>
                 ),
             },
