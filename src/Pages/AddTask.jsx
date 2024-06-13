@@ -11,24 +11,23 @@ const AddTask = () => {
         const endDate = e.target.end.value;
         const description = e.target.description.value;
 
-        const data = { title, category, startDate,endDate, description };
+        const data = { title, category, startDate, endDate, description };
 
         console.log(data);
 
-        // await fetch("", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-type": "application/json",
-        //         authorization: `Bearer ${token}`,
-        //     },
-        //     body: JSON.stringify(data),
-        // })
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //         console.log(data);
-        //         e.target.reset();
-        //     });
+        await fetch("http://localhost:5000/allTasks", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
                 e.target.reset();
+            });
+
 
 
     };
@@ -38,8 +37,9 @@ const AddTask = () => {
 
             <div className="w-full mx-auto my-16">
                 <form onSubmit={handleSubmit}>
+
                     <div className="mb-2">
-                    <label className='text-md font-medium' for="title">Project Name</label>
+                        <label className='text-md font-medium' htmlFor="title">Project Name</label>
                         <input
                             className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
                             type="text"
@@ -49,7 +49,7 @@ const AddTask = () => {
                     </div>
 
                     <div className="mb-2">
-                    <label className='text-md font-medium' for="category">Category</label>
+                        <label className='text-md font-medium' htmlFor="category">Category</label>
                         <input
                             className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
                             type="text"
@@ -60,21 +60,21 @@ const AddTask = () => {
 
                     <div className='flex md:flex-row flex-col justify-between items-center mb-2'>
                         <div>
-                            <label className='text-md font-medium' for="start">Task Start Date</label>
-                            <input type="date" id="start" name="start" 
-                            className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
+                            <label className='text-md font-medium' htmlFor="start">Task Start Date</label>
+                            <input type="date" id="start" name="start"
+                                className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
                             />
                         </div>
                         <div>
-                            <label className='text-md font-medium' for="end">Task End Date</label>
-                            <input type="date" id="end" name="end" 
-                            className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
+                            <label className='text-md font-medium' htmlFor="end">Task End Date</label>
+                            <input type="date" id="end" name="end"
+                                className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
                             />
                         </div>
                     </div>
 
                     <div className="mb-2">
-                    <label className='text-md font-medium' for="description">Task Description</label>
+                        <label className='text-md font-medium' htmlFor="description">Task Description</label>
                         <textarea style={{ resize: "none" }}
                             className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
                             type="text"
@@ -83,7 +83,17 @@ const AddTask = () => {
                         />
                     </div>
 
-
+                    <div className='mb-2'>
+                        <label htmlFor="priority">Task Priority</label>
+                        <select name="priority" id="priority" 
+                         className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
+                        >
+                            <option value="highest">Highest</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="low">Low</option>
+                            <option value="lowest">Lowest</option>
+                        </select>
+                    </div>
 
                     <div className="mb-2 flex justify-center items-center">
                         <input
