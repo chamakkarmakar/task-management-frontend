@@ -29,7 +29,7 @@ const TaskList = () => {
     })
 
     useEffect(() => {
-        fetch("http://localhost:5000/allTasks")
+        fetch("https://task-management-backend-zeta.vercel.app/allTasks")
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
@@ -38,7 +38,7 @@ const TaskList = () => {
     }, [])
 
     const handleDelete = async (id) => {
-        await fetch(`http://localhost:5000/allTasks/${id}`, {
+        await fetch(`https://task-management-backend-zeta.vercel.app/allTasks/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json",

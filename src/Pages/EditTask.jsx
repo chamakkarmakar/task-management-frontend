@@ -23,7 +23,7 @@ const EditTask = () => {
 
         const data = { title, category, startDate, endDate, description };
 
-        await fetch(`http://localhost:5000/allTasks/${task._id}`, {
+        await fetch(`https://task-management-backend-zeta.vercel.app/allTasks/${task._id}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json",

@@ -66,7 +66,7 @@ export const router = createBrowserRouter([
                   </PrivateRouter>
                 ),
                 loader: ({ params }) =>
-                  fetch(`http://localhost:5000/allTasks/${params.id}`),
+                  fetch(`https://task-management-backend-zeta.vercel.app/allTasks/${params.id}`),
               },
             {
                 path: "task-list/:id",
@@ -76,7 +76,7 @@ export const router = createBrowserRouter([
                   </PrivateRouter>
                 ),
                 loader: ({ params }) =>
-                  fetch(`http://localhost:5000/allTasks/${params.id}`),
+                  fetch(`https://task-management-backend-zeta.vercel.app/allTasks/${params.id}`),
               }
         ]
     }

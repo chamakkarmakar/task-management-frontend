@@ -16,7 +16,7 @@ const AddTask = () => {
 
         console.log(data);
 
-        await fetch("http://localhost:5000/allTasks", {
+        await fetch("https://task-management-backend-zeta.vercel.app/allTasks", {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
