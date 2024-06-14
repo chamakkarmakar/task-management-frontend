@@ -1,13 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { FaCirclePlus } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import ToDoCard from '../Components/ToDoCard/ToDoCard';
+import { useDrop } from 'react-dnd';
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
 
-    const [toDoTask, setToDoTasks] = useState(tasks);
     const [ongoingTasks, setOngoingTasks] = useState([]);
     const [completedTasks, setCompletedTasks] = useState([]);
+
+    const [{ isOngoingOver }, dropOngoingRef] = useDrop({
+        accept: 'task',
+        drop: (item) => setOngoingTasks((ongoingTasks) => 
+                            !ongoingTasks.includes(item) ? [...ongoingTasks, item] : ongoingTasks),
+        collect: (monitor) => ({
+            isOngoingOver: monitor.isOver()
+        })
+    })
+
+    const [{ isCompletedOver }, dropCompletedRef] = useDrop({
+        accept: 'task',
+        drop: (item) => setCompletedTasks((completedTasks) => 
+                            !completedTasks.includes(item) ? [...completedTasks, item] : completedTasks),
+        collect: (monitor) => ({
+            isCompletedOver: monitor.isOver()
+        })
+    })
 
     useEffect(() => {
         fetch("http://localhost:5000/allTasks")
@@ -44,19 +63,19 @@ const TaskList = () => {
                     <h3 className='text-center text-lg font-medium'>To-Do List</h3>
                     {
                         tasks.map((task, index) =>
-                            <div>
-                                <h4> {task.title}</h4>
-                                <button onClick={() => handleDelete(task._id)}>Delete</button>
-                                <Link to={`edit/${task._id}`} >Edit</Link>
-                            </div>
+                            <ToDoCard key={index} draggable title={task.title} id={task._id} />
                         )
                     }
                 </div>
-                <div className='bg-white h-[400px]'>
+                <div className='bg-white h-[400px]' ref={dropOngoingRef}>
                     <h3 className='text-center text-lg font-medium'>Ongoing List</h3>
+                    {ongoingTasks.map(task => <ToDoCard title={task.title} id={task._id}  />)}
+                    {isOngoingOver && <div>Drop Here!</div>}
                 </div>
-                <div className='bg-white h-[400px]'>
+                <div className='bg-white h-[400px]' ref={dropCompletedRef}>
                     <h3 className='text-center text-lg font-medium'>Completed</h3>
+                    {completedTasks.map(task => <ToDoCard title={task.title} id={task._id}  />)}
+                    {isCompletedOver && <div>Drop Here!</div>}
                 </div>
             </div>
         </div>

@@ -21,7 +21,7 @@ const Dashboard = () => {
         <FaTasks className='w-10 h-10 text-blue-500' />
         <div>
           <h3>Complete Task</h3>
-          <p className="text-md">122</p>
+          <p className="text-md">102</p>
         </div>
         <MdOutlineDoubleArrow className='w-12 h-12' />
       </div>
@@ -30,7 +30,7 @@ const Dashboard = () => {
         <GrTasks className='w-10 h-10 text-indigo-500' />
         <div>
           <h3>Progress Task</h3>
-          <p className="text-md">122</p>
+          <p className="text-md">20</p>
         </div>
         <MdOutlineDoubleArrow className='w-12 h-12' />
       </div>
