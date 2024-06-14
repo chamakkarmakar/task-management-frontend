@@ -54,7 +54,7 @@ const TaskList = () => {
     return (
         <div className='mx-10'>
             <div className="flex justify-between items-center my-10">
-                <h2 className="text-2xl font-semibold">Task Management {tasks.length}</h2>
+                <h2 className="text-2xl font-semibold">Task Management </h2>
                 <Link to="/dashboard/add-task" className='bg-emerald-950 px-4 py-2 text-white rounded-md font-semibold'>
                     <FaCirclePlus className='w-4 h-4 mr-3 text-white inline' />Create task</Link>
             </div>
@@ -69,7 +69,7 @@ const TaskList = () => {
                 </div>
                 <div className='bg-white h-[400px]' ref={dropOngoingRef}>
                     <h3 className='text-center text-lg font-medium'>Ongoing List</h3>
-                    {ongoingTasks.map(task => <ToDoCard title={task.title} id={task._id}  />)}
+                    {ongoingTasks.map(task => <ToDoCard title={task.title} id={task._id} handleDelete={handleDelete} />)}
                     {isOngoingOver && <div>Drop Here!</div>}
                 </div>
                 <div className='bg-white h-[400px]' ref={dropCompletedRef}>

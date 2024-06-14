@@ -5,7 +5,11 @@ import { AuthContext } from '../Components/AuthProvider/AuthProvider';
 import { IoMdSearch } from 'react-icons/io';
 
 const DashboardLayout = () => {
-  const { user } = useContext(AuthContext);
+  const { user ,logOut} = useContext(AuthContext);
+
+  const handleSignOut = async () => {
+    await logOut();
+  }
   return (
     <div className="drawer lg:drawer-open bg-cyan-500/20">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -46,6 +50,11 @@ const DashboardLayout = () => {
             <NavLink to="/" className={({ isActive, isPending }) =>
               isPending ? "pending" : isActive ? "bg-cyan-800 w-auto md:px-20 px-10 py-2" : ""
             }>Home</NavLink>
+          </li>
+          
+          <li className='text-white mb-5 md:text-lg text-md '>
+            <NavLink onClick={handleSignOut} className={"w-auto md:px-20 px-10 py-2"
+            }>Logout</NavLink>
           </li>
 
         </ul>

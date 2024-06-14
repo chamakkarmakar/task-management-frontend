@@ -50,16 +50,10 @@ const NavBar = () => {
               }
                {
                 user ?
-                  <>
-                  <Link to="/dashboard"
-                    className='relative h-7 text-center w-28 font-semibold origin-top transform rounded-lg capitalize text-md text-white before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-emerald-500'
-                  >Dashboard
-                  </Link>
                   <Link onClick={handleSignOut}
                     className='relative h-7 text-center w-28 font-semibold origin-top transform rounded-lg capitalize text-md text-white before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-emerald-500'
                   >Log Out
                   </Link>
-                  </>
                   :
                   <Link to="/login"
                     className='relative h-7 text-center w-28 font-semibold origin-top transform rounded-lg capitalize text-md text-white before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-emerald-500'
