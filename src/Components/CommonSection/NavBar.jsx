@@ -26,7 +26,7 @@ const NavBar = () => {
       await logOut();
     }
     return (
-        <div className="sticky top-0 max-w-full">
+        <div className="sticky top-0 max-w-full z-10">
       <div className='py-3 bg-emerald-600'>
         <nav className="flex justify-between items-center w-full">
           <div className='md:w-2/5 w-full md:mx-10 mx-5 transition-all duration-150 ease-linear delay-75 flex items-center'>
