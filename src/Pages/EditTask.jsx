@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useLoaderData } from 'react-router-dom'
 
-const AddTask = () => {
+const EditTask = () => {
+    const task = useLoaderData()
+    console.log()
+
+    const [title, setTitle] = useState(task.title);
+    const [category, setCategory] = useState(task.category);
+    const [taskStart, setTaskStart] = useState(task.taskStart);
+    const [taskEnd, setTaskEnd] = useState(task.taskEnd);
+    const [description, setDescription] = useState(task.description);
+    const [priority, setPriority] = useState(task.priority);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -9,15 +19,12 @@ const AddTask = () => {
         const category = e.target.category.value;
         const startDate = e.target.start.value;
         const endDate = e.target.end.value;
-        const priority = e.target.priority.value;
         const description = e.target.description.value;
 
-        const data = { title, category, startDate, endDate,priority, description };
+        const data = { title, category, startDate, endDate, description };
 
-        console.log(data);
-
-        await fetch("http://localhost:5000/allTasks", {
-            method: "POST",
+        await fetch(`http://localhost:5000/allTasks/${task._id}`, {
+            method: "PATCH",
             headers: {
                 "Content-type": "application/json",
             },
@@ -26,12 +33,18 @@ const AddTask = () => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                e.target.reset();
+                setTitle('')
+                setCategory('')
+                setTaskStart('')
+                setTaskEnd('')
+                setDescription('')
+                setPriority('')
             });
-    };
+    }
+
     return (
         <div className='my-20 w-3/4 mx-auto'>
-            <h1 className="text-5xl font-bold text-center">Create Task</h1>
+            <h1 className="text-5xl font-bold text-center">Edit Task</h1>
 
             <div className="w-full mx-auto my-16">
                 <form onSubmit={handleSubmit}>
@@ -43,6 +56,8 @@ const AddTask = () => {
                             type="text"
                             name="title"
                             placeholder="Project Name"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
 
@@ -53,6 +68,8 @@ const AddTask = () => {
                             type="text"
                             name="category"
                             placeholder="Category"
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
                         />
                     </div>
 
@@ -61,12 +78,16 @@ const AddTask = () => {
                             <label className='text-md font-medium' htmlFor="start">Task Start Date</label>
                             <input type="date" id="start" name="start"
                                 className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
+                                value={taskStart}
+                                onChange={(e) => setTaskStart(e.target.value)}
                             />
                         </div>
                         <div>
                             <label className='text-md font-medium' htmlFor="end">Task End Date</label>
                             <input type="date" id="end" name="end"
                                 className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
+                                value={taskEnd}
+                                onChange={(e) => setTaskEnd(e.target.value)}
                             />
                         </div>
                     </div>
@@ -78,13 +99,17 @@ const AddTask = () => {
                             type="text"
                             name="description"
                             placeholder="Description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </div>
 
                     <div className='mb-2'>
                         <label htmlFor="priority">Task Priority</label>
-                        <select name="priority" id="priority" 
-                         className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
+                        <select name="priority" id="priority"
+                            className="w-full rounded-lg border border-indigo-600 px-6 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-600/50 md:w-full"
+                            value={priority}
+                            onChange={(e) => setPriority(e.target.value)}
                         >
                             <option value="highest">Highest</option>
                             <option value="moderate">Moderate</option>
@@ -97,7 +122,7 @@ const AddTask = () => {
                         <input
                             className="btn mt-4 w-full bg-indigo-600 hover:bg-indigo-800 cursor-pointer rounded-xl font-semibold text-white p-4"
                             type="submit"
-                            value="Add Task"
+                            value="Update Task"
                         />
                     </div>
                 </form>
@@ -107,4 +132,4 @@ const AddTask = () => {
     )
 }
 
-export default AddTask
+export default EditTask

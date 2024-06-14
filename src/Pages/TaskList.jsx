@@ -47,6 +47,7 @@ const TaskList = () => {
                             <div>
                                 <h4> {task.title}</h4>
                                 <button onClick={() => handleDelete(task._id)}>Delete</button>
+                                <Link to={`edit/${task._id}`} >Edit</Link>
                             </div>
                         )
                     }

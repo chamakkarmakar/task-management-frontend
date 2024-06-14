@@ -8,6 +8,7 @@ import Dashboard from "../Pages/Dashboard";
 import DashboardLayout from "../Layout/DashboardLayout";
 import TaskList from "../Pages/TaskList";
 import AddTask from "../Pages/AddTask";
+import EditTask from "../Pages/EditTask";
 
 export const router = createBrowserRouter([
     {
@@ -56,6 +57,16 @@ export const router = createBrowserRouter([
                     </PrivateRouter>
                 ),
             },
+            {
+                path: "task-list/edit/:id",
+                element: (
+                  <PrivateRouter>
+                    <EditTask />
+                  </PrivateRouter>
+                ),
+                loader: ({ params }) =>
+                  fetch(`http://localhost:5000/allTasks/${params.id}`),
+              }
         ]
     }
 ])
